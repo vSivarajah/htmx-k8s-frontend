@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Specification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-okaidia.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-yaml.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark-mode {
+            background-color: #1a202c;
+            color: #a0aec0;
+        }
+        .light-mode {
+            background-color: #f7fafc;
+            color: #2d3748;
+        }
+    </style>
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
+        }
+    </script>
+</head>
+<body class="light-mode">
+    <div class="container mx-auto py-10">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold">Deployment Specification: {{.Name}}</h1>
+            <button onclick="toggleTheme()" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+                Toggle Dark/Light Mode
+            </button>
+        </div>
+        <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
+            <h2 class="text-2xl font-semibold mb-4">YAML Representation</h2>
+            <pre><code class="language-yaml">{{.YAML}}</code></pre>
+        </div>
+        <div class="text-center mt-6">
+            <a href="/deployments" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Back to Deployments</a>
+        </div>
+    </div>
+</body>
+</html>

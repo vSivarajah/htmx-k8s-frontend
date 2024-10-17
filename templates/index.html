@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubernetes Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <div class="container mx-auto py-10">
+        <h1 class="text-4xl font-bold text-center mb-10">Welcome to the Kubernetes Dashboard</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="shadow-lg p-6 bg-white rounded-lg hover:shadow-xl transition">
+                <h2 class="text-2xl font-semibold mb-3">Pods Information</h2>
+                <p class="mb-4">View detailed information about Kubernetes pods running in the cluster.</p>
+                <a href="/pods" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">View Pods</a>
+            </div>
+            <div class="shadow-lg p-6 bg-white rounded-lg hover:shadow-xl transition">
+                <h2 class="text-2xl font-semibold mb-3">Deployments Information</h2>
+                <p class="mb-4">View details about Kubernetes deployments, including replicas and labels.</p>
+                <a href="/deployments" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">View Deployments</a>
+            </div>
+            <div class="shadow-lg p-6 bg-white rounded-lg hover:shadow-xl transition">
+                <h2 class="text-2xl font-semibold mb-3">Services Information</h2>
+                <p class="mb-4">View details about the services available in the Kubernetes cluster.</p>
+                <a href="/services" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">View Services</a>
+            </div>
+            <div class="shadow-lg p-6 bg-white rounded-lg hover:shadow-xl transition">
+                <h2 class="text-2xl font-semibold mb-3">Nodes Information</h2>
+                <p class="mb-4">View information about the nodes in the Kubernetes cluster, including their roles and conditions.</p>
+                <a href="/nodes" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">View Nodes</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

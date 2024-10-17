@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodes Information</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <div class="container mx-auto py-10">
+        <h1 class="text-4xl font-bold text-center mb-10">Kubernetes Nodes Information</h1>
+        <div class="flex justify-center mb-6">
+            <form action="/nodes" method="get" class="flex space-x-4">
+                <select name="namespace" class="px-4 py-2 border border-gray-300 rounded-lg">
+                    <option value="default">default</option>
+                    <option value="kube-system">kube-system</option>
+                    <option value="custom-namespace">custom-namespace</option>
+                </select>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Select Namespace</button>
+            </form>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white shadow-md rounded-lg">
+                <thead>
+                    <tr class="bg-gray-800 text-white text-left">
+                        <th class="py-3 px-6">Name</th>
+                        <th class="py-3 px-6">Status</th>
+                        <th class="py-3 px-6">Roles</th>
+                        <th class="py-3 px-6">Addresses</th>
+                        <th class="py-3 px-6">Conditions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    {{range .}}
+                    <tr class="hover:bg-gray-100 border-b border-gray-200">
+                        <td class="py-4 px-6">{{.Name}}</td>
+                        <td class="py-4 px-6">
+                            <span class="inline-block px-2 py-1 text-xs rounded {{if eq .Status "Ready"}}bg-green-200 text-green-800{{else}}bg-red-200 text-red-800{{end}}">
+                                {{.Status}}
+                            </span>
+                        </td>
+                        <td class="py-4 px-6">
+                            {{range .Roles}}
+                                <span class="inline-block px-2 py-1 text-xs rounded bg-gray-200 text-gray-700 mr-2">{{.}}</span>
+                            {{end}}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{range .Addresses}}
+                                <span class="inline-block px-2 py-1 text-xs rounded bg-gray-200 text-gray-700 mr-2">{{.}}</span>
+                            {{end}}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{range .Conditions}}
+                                <span class="inline-block px-2 py-1 text-xs rounded bg-gray-200 text-gray-700 mr-2">{{.}}</span>
+                            {{end}}
+                        </td>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-6">
+            <a href="/" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>

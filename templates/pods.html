@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployments Information</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <div class="container mx-auto py-10">
+        <h1 class="text-4xl font-bold text-center mb-10">Kubernetes Deployments Information</h1>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white shadow-md rounded-lg">
+                <thead>
+                    <tr class="bg-gray-800 text-white text-left">
+                        <th class="py-3 px-6">Namespace</th>
+                        <th class="py-3 px-6">Name</th>
+                        <th class="py-3 px-6">Replicas</th>
+                        <th class="py-3 px-6">Available Replicas</th>
+                        <th class="py-3 px-6">Labels</th>
+                        <th class="py-3 px-6">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    {{range .}}
+                    <tr class="hover:bg-gray-100 border-b border-gray-200">
+                        <td class="py-4 px-6">{{.Namespace}}</td>
+                        <td class="py-4 px-6">{{.Name}}</td>
+                        <td class="py-4 px-6">{{.Replicas}}</td>
+                        <td class="py-4 px-6">{{.Available}}</td>
+                        <td class="py-4 px-6">
+                            {{range $key, $value := .Labels}}
+                                <span class="inline-block px-2 py-1 text-xs rounded bg-gray-200 text-gray-700 mr-2">{{$key}}: {{$value}}</span>
+                            {{end}}
+                        </td>
+                        <td class="py-4 px-6">
+                            <a href="/deployments/spec?name={{.Name}}&namespace={{.Namespace}}" class="bg-green-500 hover:bg-green-600 text-white py-1 px-3 rounded">View Spec</a>
+                            <a href="/deployments/logs?name={{.Name}}&namespace={{.Namespace}}" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded">View Logs</a>
+                        </td>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-6">
+            <a href="/" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
